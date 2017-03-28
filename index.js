@@ -2,8 +2,9 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-	res.send('Hi');
-})
+app.use('/api', require('./routes/routes'));
 
-app.listen(5555);
+
+app.listen(9000, function() {
+	console.log('the app is running on the port 9000');
+});
