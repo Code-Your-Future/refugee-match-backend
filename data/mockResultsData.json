@@ -1,0 +1,79 @@
+[
+  {
+    "id": 0,
+    "name": "Bath",
+    "Job opportunities": 50,
+    "Quality of schools": 42,
+    "Level of crime": 80
+  },
+  {
+    "id": 1,
+    "name": "Bermingham",
+    "Job opportunities": 20,
+    "Quality of schools": 30,
+    "Level of crime": 12
+  },
+  {
+    "id": 2,
+    "name": "Bradford",
+    "Job opportunities": 32,
+    "Quality of schools": 45,
+    "Level of crime": 65
+  },
+  {
+    "id": 3,
+    "name": "Bristol",
+    "Job opportunities": 73,
+    "Quality of schools": 26,
+    "Level of crime": 64
+  },
+  {
+    "id": 4,
+    "name": "Cambridge",
+    "Job opportunities": 0,
+    "Quality of schools": 4,
+    "Level of crime": 2
+  },
+  {
+    "id": 5,
+    "name": "Coventry",
+    "Job opportunities": 73,
+    "Quality of schools": 26,
+    "Level of crime": 64
+  },
+  {
+    "id": 6,
+    "name": "Derby",
+    "Job opportunities": 0,
+    "Quality of schools": 4,
+    "Level of crime": 2
+  },
+  {
+    "id": 7,
+    "name": "Chester",
+    "Job opportunities": 65,
+    "Quality of schools": 13,
+    "Level of crime": 43
+  },
+  {
+    "id": 8,
+    "name": "Lancaster",
+    "Job opportunities": 61,
+    "Quality of schools": 19,
+    "Level of crime": 41
+  },
+  {
+    "id": 9,
+    "name": "Exeter",
+    "Job opportunities": 55,
+    "Quality of schools": 76,
+    "Level of crime": 98
+  },
+  {
+    "id": 10,
+    "name": "Durham",
+    "Job opportunities": 12,
+    "Quality of schools": 21,
+    "Level of crime": 22
+  }
+]
