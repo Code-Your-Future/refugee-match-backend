@@ -10,7 +10,8 @@ router.get('/', function(req, res) {
 
   fs.readFile('./data/data.json', 'utf-8', (err, data) => {
     if (err) throw err
-    return res.send(data);
+    let newData = JSON.parse(data);
+    return res.send(newData);
   })
 });
 
