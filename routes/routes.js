@@ -33,7 +33,6 @@ router.post('/', function(req, res) {
     name: "none",
     answers: ""
   }
-  res.send({type:'POST'});
   // console.log("this is the data", req.body);
 
   // save it in data.json
@@ -64,6 +63,14 @@ router.post('/', function(req, res) {
   	fs.writeFile('./data/collectedUsersData.json', JSON.stringify(parsedUsersData), function(err) {
   		if (err) throw err
   	})
+  })
+
+  fs.readFile('./data/mockResultsData.json', 'utf-8', function(err, data){
+    if(err) throw err;
+
+    const newData = JSON.parse(data);
+
+    res.send(newData);
   })
 })
 
