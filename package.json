@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Code-Your-Future/refugee-match-backend#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mongoose": "^4.9.3"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
