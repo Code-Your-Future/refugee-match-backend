@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+// conncet to mongodb
+mongoose.connect('mongodb://localhost/refugeesMatch');
+mongoose.Promise = global.Promise;
 
 // allow to Access this server (CORS permissions) :)
 app.use(function(req, res, next) {
@@ -13,9 +18,10 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// initial the reouter
 app.use('/api', require('./routes/routes'));
 
 
-app.listen(9000, function() {
-	console.log('the app is running on the port 9000');
+app.listen(process.env.port || 8080, function() {
+	console.log('the app is running on the port 8080');
 });
