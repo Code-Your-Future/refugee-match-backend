@@ -9,7 +9,7 @@ const Question = require('../models/questionData');
 
 // get the list from the db
 router.get('/', function(req, res) {
-  Question.find('show collections').then((val) =>{
+  Question.find().then((val) =>{
     res.send(val);
   })
 
@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
 // post the list to the db
 router.post('/', function(req, res) {
   // mongodb start
-  User.create(req.body).then(function(user) {
+  Question.create(req.body).then(function(user) {
     res.send(user);
   });
   // mongodb ends
