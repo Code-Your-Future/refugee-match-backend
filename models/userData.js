@@ -4,12 +4,13 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name:{type:String, default:"none"},
   answers:[{
-    id:{type:String,required:true},
-    answer:String
+    answerId:{type:String,required:true},
+    answer:String,
+    answerValue:Number
   }],
   date:{ type: Date, default: Date.now }
   // GEO location below
-}, {_id:false});
+});
 
 const UserData = mongoose.model('user', UserSchema);
 
