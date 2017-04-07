@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const QuestionSchema = new Schema({
     questionId: String,
     question: String,
-    options: [{answerId: String, answer: String}],
+    options: [{answerId: String, answer: String, answerValue: Number}],
     questionType: String
 },{autoIndexId:false});
 
