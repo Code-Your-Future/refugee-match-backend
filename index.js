@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // conncet to mongodb
-mongoose.connect('mongodb://localhost/refugeesMatch');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/refugeesMatch');
 mongoose.Promise = global.Promise;
 
 // allow to Access this server (CORS permissions) :)
