@@ -1,23 +1,36 @@
 'use strict'
 
+// take the dataset.json
+// format to a new json file
+// insert it to the db
+
 const fs = require('fs');
+const DataSetModel = require('../models/dataSet');
 
-var d = [];
-
+let d = [];
 function formatDataSet(req, res, next) {
+  // read dataSet.json
   fs.readFile('./data/dataSet.json', 'utf-8', function(err, data) {
-    if(err) throw err;
+    if(err) throw err; //check for read errors
+    // parse it
     const dataset = JSON.parse(data);
+    // map through the json
     dataset.map(function(dataSet) {
-      console.log(dataSet);
+      // console.log(dataSet);
+      // set a new object
       var newDataSet = {};
+      // add an array key to the object
       newDataSet.answers = [];
+      // loop through object
       for(var i in dataSet) {
+        // if the key is Local Authority
         if(i === "Local Authority") {
           // we need one word for the key
           newDataSet.localAthurity = dataSet[i];
+          // if the key is Region
         } else if(i === "Region") {
             newDataSet.region = dataSet[i];
+            // push to array key
         } else {
             newDataSet["answers"].push({
               "answerId": "q1a1",
@@ -59,13 +72,13 @@ function formatDataSet(req, res, next) {
           case "Synagogue":
             val.answerId = "q4a3";
             break;
-          case "Hindu temple":
+          case "Hindu Temple":
             val.answerId = "q4a4";
             break;
-          case "Sikh temple":
+          case "Sikh Temple":
             val.answerId = "q4a5";
             break;
-          case "Buddhist temple":
+          case "Buddhist Temple":
             val.answerId = "q4a6";
             break;
           case "Administration":
@@ -86,7 +99,7 @@ function formatDataSet(req, res, next) {
           case "Health and Social work":
             val.answerId = "q5a6";
             break;
-          case "Electricity, Gas and Water":
+          case "Electrcity, Gas and Water":
             val.answerId = "q5a7";
             break;
           case "Hotel and Restaurant":
@@ -118,13 +131,16 @@ function formatDataSet(req, res, next) {
             break;
 
           }
-        });
-        d.push(newDataSet);
+      });
+      // res.send(newDataSet);
+      d.push(newDataSet);
+      DataSetModel.create(newDataSet).then(function(data) {
+        console.log(data);
+      });
 
       }); // map through all files ends here
-
+      res.send(d);
     }); // reading the file ends here
-    res.send(d);
 }
 
 module.exports = {
