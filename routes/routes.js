@@ -3,52 +3,34 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const User = require('../models/userData');
 const Question = require('../models/questionData');
-const Logic = require('../logics/logic');
+const DataSet = require('../models/dataSet');
+const Results = require('../logics/result');
+
+// this on is to add the json to the db
+// const DataSetLogic = require('../logics/dataSetLogic');
 
 
-// get the list from the db
-router.get('/E', Logic.formatData);
 
-router.get('/', function(req, res) {
-  Question.find().then((val) => {
-    res.send(val);
-  })
+// format the dataset to insert in the db
+router.get('/dataset', function(req, res, next) {
+  DataSet.find().then(function(data) {
+    res.send(data);
+  });
+});
+// show the results
+router.get('/results', Results);
+
+// show questions
+router.get('/questions', function(req, res) {
+  Question.find().then(function(questionData) {
+    res.send(questionData);
+  });
 
 });
-
-router.get('/D1', function(req, res) {
-  fs.readFile('./data/D1.json', "utf-8", (err, data) => {
-    const parseData = JSON.parse(data)
-    res.send(parseData)
-  })
-
-});
-router.get('/D', function(req, res) {
-  fs.readFile('./data/D.json', "utf-8", (err, data) => {
-    const parseData = JSON.parse(data)
-    res.send(parseData)
-  })
-
-});
-router.get('/D2', function(req, res) {
-  fs.readFile('./data/D2.json', "utf-8", (err, data) => {
-    const parseData = JSON.parse(data)
-    res.send(parseData)
-  })
-
-});
-
 
 // post the list to the db
-router.post('/', function(req, res) {
-  // mongodb start
-  User.create(req.body).then(function(user) {
-    res.send(user);
-  });
-  // mongodb ends
-})
+router.post('/', Results);
 
 // update the list in the db
 router.put('/:id', function(req, res) {

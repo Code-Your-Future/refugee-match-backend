@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 });
 // this the middleware that handle the body of the request
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({extended: false}));
 
 // initial the reouter
 app.use('/api', require('./routes/routes'));
