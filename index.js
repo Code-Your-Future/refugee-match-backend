@@ -22,6 +22,6 @@ app.use(bodyParser.json());
 app.use('/api', require('./routes/routes'));
 
 
-app.listen(process.env.port || 8080, function() {
+app.listen(process.env.PORT || 8080, function() {
 	console.log('the app is running on the port 8080');
 });
