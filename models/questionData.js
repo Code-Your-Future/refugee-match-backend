@@ -6,7 +6,7 @@ const QuestionSchema = new Schema({
     question: String,
     options: [{answerId: String, answer: String, answerValue: Number}],
     questionType: String
-},{autoIndexId:false});
+});
 
 
 const QuestionData = mongoose.model('question', QuestionSchema);

@@ -5,12 +5,12 @@
 // insert it to the db
 
 const fs = require('fs');
-const DataSetModel = require('../models/dataSet');
+const DataSetModel = require(`${process.cwd()}/models/dataSet`);
 
 let dataSet_list = [];
-function formatDataSet() {
+function formatDataSet(req, res) {
   // read dataSet.json
-  fs.readFile('./data/dataSet.json', 'utf-8', function(err, data) {
+  fs.readFile('./data/data.json', 'utf-8', function(err, data) {
     if(err) throw err; //check for read errors
     // parse it
     const dataset = JSON.parse(data);
@@ -30,6 +30,15 @@ function formatDataSet() {
           // if the key is Region
         } else if(i === "Region") {
             newDataSet.region = dataSet[i];
+            // push to array key
+        } else if(i === "Definition") {
+            newDataSet.definition = dataSet[i];
+            // push to array key
+        } else if(i === "ProfilePicture") {
+            newDataSet.profilePicture = dataSet[i];
+            // push to array key
+        } else if(i === "Quote") {
+            newDataSet.quote = dataSet[i];
             // push to array key
         } else {
             newDataSet["answers"].push({
@@ -133,13 +142,13 @@ function formatDataSet() {
           }
       });
       // res.send(newDataSet);
-      d.push(newDataSet);
+      dataSet_list.push(newDataSet);
       DataSetModel.create(newDataSet).then(function(data) {
         console.log(data);
       });
 
       }); // map through all files ends here
-      res.send(d);
+      res.send(dataSet_list);
     }); // reading the file ends here
 }
 
