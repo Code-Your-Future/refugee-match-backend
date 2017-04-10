@@ -7,8 +7,8 @@
 const fs = require('fs');
 const DataSetModel = require('../models/dataSet');
 
-let d = [];
-function formatDataSet(req, res, next) {
+let dataSet_list = [];
+function formatDataSet() {
   // read dataSet.json
   fs.readFile('./data/dataSet.json', 'utf-8', function(err, data) {
     if(err) throw err; //check for read errors
@@ -99,7 +99,7 @@ function formatDataSet(req, res, next) {
           case "Health and Social work":
             val.answerId = "q5a6";
             break;
-          case "Electrcity, Gas and Water":
+          case "Electricity, Gas and Water":
             val.answerId = "q5a7";
             break;
           case "Hotel and Restaurant":
@@ -114,10 +114,10 @@ function formatDataSet(req, res, next) {
           case "Countryside":
             val.answerId = "q6a1";
             break;
-          case "oldcity":
+          case "Oldcity":
             val.answerId = "q6a2";
             break;
-          case "moderncity":
+          case "Moderncity":
             val.answerId = "q6a3";
             break;
           case "Urban":

@@ -8,10 +8,10 @@ const DataSet = require('../models/dataSet');
 const Results = require('../logics/result');
 
 // this on is to add the json to the db
-const DataSetLogic = require('../logics/dataSetLogic');
+const DataSetFormatting = require('../formatData/dataUpload');
 
 
-router.get('/formatting', DataSetLogic.formatData);
+router.get('/formatting', DataSetFormatting.formatData);
 
 // format the dataset to insert in the db
 router.get('/dataset', function(req, res, next) {
