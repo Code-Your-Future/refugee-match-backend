@@ -8,9 +8,13 @@ const DataSet = require('../models/dataSet');
 const Results = require('../logics/result');
 
 // this on is to add the json to the db
-// const DataSetLogic = require('../logics/dataSetLogic');
+const DataSetFormatting = require('../formatData/dataSetFormat/dataUpload');
+const QuestionsFormatting = require('../formatData/questionsFormat/questionsUpload');
 
 
+// formatting to the database
+router.get('/formattingDataSet', DataSetFormatting.formatData);
+router.get('/formattingQuestions', QuestionsFormatting.questionsFormat);
 
 // format the dataset to insert in the db
 router.get('/dataset', function(req, res, next) {
@@ -18,16 +22,16 @@ router.get('/dataset', function(req, res, next) {
     res.send(data);
   });
 });
+
+router.get('/questions', function(req, res, next) {
+  Question.find().then(function(data) {
+    res.send(data);
+  });
+});
 // show the results
-router.get('/results', Results);
+// router.get('/results', Results);
 
 // show questions
-router.get('/questions', function(req, res) {
-  Question.find().then(function(questionData) {
-    res.send(questionData);
-  });
-
-});
 
 // post the list to the db
 router.post('/', Results);

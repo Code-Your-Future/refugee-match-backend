@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // conncet to mongodb
-mongoose.connect('mongodb://localhost/refugeesMatch');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/refugeesMatch');
 mongoose.Promise = global.Promise;
 
 // allow to Access this server (CORS permissions) :)
@@ -22,6 +22,6 @@ app.use(bodyParser.json());
 app.use('/api', require('./routes/routes'));
 
 
-app.listen(process.env.port || 8080, function() {
+app.listen(process.env.PORT || 8080, function() {
 	console.log('the app is running on the port 8080');
 });

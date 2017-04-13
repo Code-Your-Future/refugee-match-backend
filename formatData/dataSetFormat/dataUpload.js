@@ -5,12 +5,12 @@
 // insert it to the db
 
 const fs = require('fs');
-const DataSetModel = require('../models/dataSet');
+const DataSetModel = require(`${process.cwd()}/models/dataSet`);
 
-let d = [];
-function formatDataSet(req, res, next) {
+let dataSet_list = [];
+function formatDataSet(req, res) {
   // read dataSet.json
-  fs.readFile('./data/dataSet.json', 'utf-8', function(err, data) {
+  fs.readFile('./data/data.json', 'utf-8', function(err, data) {
     if(err) throw err; //check for read errors
     // parse it
     const dataset = JSON.parse(data);
@@ -30,6 +30,15 @@ function formatDataSet(req, res, next) {
           // if the key is Region
         } else if(i === "Region") {
             newDataSet.region = dataSet[i];
+            // push to array key
+        } else if(i === "Definition") {
+            newDataSet.definition = dataSet[i];
+            // push to array key
+        } else if(i === "ProfilePicture") {
+            newDataSet.profilePicture = dataSet[i];
+            // push to array key
+        } else if(i === "Quote") {
+            newDataSet.quote = dataSet[i];
             // push to array key
         } else {
             newDataSet["answers"].push({
@@ -99,7 +108,7 @@ function formatDataSet(req, res, next) {
           case "Health and Social work":
             val.answerId = "q5a6";
             break;
-          case "Electrcity, Gas and Water":
+          case "Electricity, Gas and Water":
             val.answerId = "q5a7";
             break;
           case "Hotel and Restaurant":
@@ -114,10 +123,10 @@ function formatDataSet(req, res, next) {
           case "Countryside":
             val.answerId = "q6a1";
             break;
-          case "oldcity":
+          case "Oldcity":
             val.answerId = "q6a2";
             break;
-          case "moderncity":
+          case "Moderncity":
             val.answerId = "q6a3";
             break;
           case "Urban":
@@ -133,13 +142,13 @@ function formatDataSet(req, res, next) {
           }
       });
       // res.send(newDataSet);
-      d.push(newDataSet);
+      dataSet_list.push(newDataSet);
       DataSetModel.create(newDataSet).then(function(data) {
         console.log(data);
       });
 
       }); // map through all files ends here
-      res.send(d);
+      res.send(dataSet_list);
     }); // reading the file ends here
 }
 
